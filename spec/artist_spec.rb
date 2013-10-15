@@ -17,7 +17,11 @@ describe "Artist" do
 		artist.tap {|a| a.songs = Song.new; a.songs = Song.new }
 	end
 
-	it "can have genres through songs"
+	it "can have genres through songs" do
+		song.genre = "rap"
+		artist.songs = song
+		artist.songs[0].genre.should eq("rap")
+	end
 
 	it "can keep track of artists created"
 
