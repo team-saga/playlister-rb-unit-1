@@ -1,3 +1,5 @@
+require_relative '../../environment.rb'
+
 class Artist
   attr_accessor :name, :songs, :genres
 
@@ -7,15 +9,17 @@ class Artist
   end
 
   def songs=(song)
-    self.songs << song
+    @songs << song
   end
 
   def genres=(genre)
-    self.genres << genre
+    @genres << genre
   end
 
   def songs
-    self.songs.flatten
+    @songs.flatten
   end
 
 end
+
+# binding.pry
