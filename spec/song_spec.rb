@@ -1,21 +1,22 @@
 describe "Song" do
+	let(:song) {Song.new}
   it "can initialize a song" do
-    pending #implement this spec
+    song.should be_an_instance_of(Song)
   end
 
   it "can have a name" do
-    pending #implement this spec
+    song.name = "1 + 1"
+    song.name.should eq("1 + 1")
   end
 
   it "can have a genre" do
-    pending #implement this spec
+    song.genre = "hip-hop"
+    song.genre.should eq("hip-hop")
   end
 
   it "has an artist" do
-    pending #implement this spec
+    song.artist = "Jay-Z & Kanye West"
+    song.artist.should eq("Jay-Z & Kanye West")
   end
-
-
-  it "can return the genre for an artist's song" 
 
 end
