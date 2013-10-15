@@ -18,23 +18,29 @@ describe "Artist" do
 	end
 
 	it "can have genres through songs" do
-		song.genre = "rap"
+		song.genre = "hip-hop"
 		artist.songs = song
-		artist.songs[0].genre.should eq("rap")
+		artist.songs[0].genre.should eq("hip-hop")
 	end
 
-	it "can keep track of artists created"
+	it "can keep track of artists created" do
+		Artist.reset_artists
+		#create a bunch of new artists
+		5.times do 
+			Artist.new
+		end
 
-	it "can sort artists in alphabetical order"
+		Artist.all.length.should eq(5)
+	end
 
-	it "can count how many songs an artist has"
+	it "can count how many songs an artist has" do 
+		artist.songs = [song,Song.new,Song.new,Song.new]
+		artist.songs.count.should eq(4)
+	end
 
-	it "can return the return the genre for an artist's songs"
-
-	it "can reset the artists created"
-
-
-
-
+	it "can reset the artists created" do
+    Artist.reset_artists
+    Artist.count.should eq(0)
+	end
 
 end

@@ -15,4 +15,7 @@ describe "Song" do
     pending #implement this spec
   end
 
+
+  it "can return the genre for an artist's song" 
+
 end
