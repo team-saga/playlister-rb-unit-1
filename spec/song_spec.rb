@@ -1,3 +1,5 @@
+require_relative '../environment'
+
 describe "Song" do
 	let(:song) {Song.new}
   it "can initialize a song" do

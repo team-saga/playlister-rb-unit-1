@@ -1,3 +1,5 @@
+require_relative '../environment'
+
 describe "Genre" do
 	it "can initialize a genre" do
 		Genre.new.should be_an_instance_of(Genre)
