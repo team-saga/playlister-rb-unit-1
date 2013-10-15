@@ -4,6 +4,13 @@ require_relative '../environment'
 describe "LibraryParser" do
 
  it "should be able to read a single file" do
+  # Read in a file from the data source
+  data = File.first.read("../../data/..")
+
+  # Return true if file was read in
+  data.should eg(true)
+
+  # test reading files for edge cases
 
  end
 
