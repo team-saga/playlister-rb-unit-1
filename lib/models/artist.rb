@@ -1,10 +1,21 @@
 class Artist
-	attr_accessor :name :songs :genres
+  attr_accessor :name, :songs, :genres
 
-	def initialize
-		@artist = artist
-		@songs = []
-		
+  def initialize
+    @songs = []
+    @genres = []
+  end
 
-	end
+  def songs=(song)
+    self.songs << song
+  end
+
+  def genres=(genre)
+    self.genres << genre
+  end
+
+  def songs
+    self.songs.flatten
+  end
+
 end

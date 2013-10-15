@@ -1,12 +1,13 @@
+require_relative '../environment'
 describe "Artist" do
 	it "can be initialized" do
-		Artist.new.should_be_an_instance_of(Artist)
+		Artist.new.should be_an_instance_of(Artist)
 	end
 
 	it "can have a name" do
 		artist = Artist.new
-		artist.name = "Kanye West"
-		artist.name.should eq("Kanye West")
+		artist.name = "Jay-Z & Kanye West"
+		artist.name.should eq("Jay-Z & Kanye West")
 	end
 
 	it "can have songs" do
