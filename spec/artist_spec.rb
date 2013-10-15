@@ -10,7 +10,7 @@ describe "Artist" do
 	end
 
 	it "can have songs" do
-		
+	end
 
 	it "can have genres through songs"
 
