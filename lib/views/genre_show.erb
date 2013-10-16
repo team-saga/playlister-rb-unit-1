@@ -8,7 +8,7 @@
 <h1><%= @genre.name %> - <%= @genre.songs.count %> Song(s), <%= @genre.artists.count %> Artist(s)</h1>
 <ol>
 	<% @genre.songs.each do |song| %>
-   <li><a href="../songs/<%= song.url%>.html" title=""><%= song.name %></a> - <a href="../genres/<%= song.genre.url%>.html" title=""><%= song.genre.name %></a></li>
+   <li><a href="../artists/<%= song.artist.url%>.html" title=""><%= song.artist.name %></a> - <a href="../songs/<%= song.url%>.html" title=""><%= song.name %></a></li>
   <% end %>
 </ol>
 </body>
