@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @artist.name %></title>
+  <title>Artist Name</title>
 </head>
 <body>
-<h1><%= @artist.name %></h1>
-<table>
-  <caption>Songs</caption>
-  <thead>
-    <tr>
-      <th>Songs</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @songs.artist.each do |song| %>
-    <tr>
-      <td><%= @song.name %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<h1>Artist Name</h1>
+<h2>Songs by this artist</h2>
+<ul>
+  <li>Song name - Genre</li>
+</ul>
+
 </body>
 </html>
