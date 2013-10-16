@@ -15,6 +15,7 @@ class Genre
 	end
 
 	def artists=(artist)
+		artist.genres << self
 		@artists << artist
 	end
 
@@ -37,5 +38,9 @@ class Genre
 	def songs
 		@songs.flatten
 	end
+
+  def self.find_or_create_by_name(string)
+    @@all.detect{|g| g.name == string} || Genre.new.tap{|g| g.name = string}
+  end
 
 end
