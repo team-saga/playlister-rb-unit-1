@@ -5,11 +5,11 @@ class SiteGenerator
 	x = LibraryParser.new
 	x.get_and_split_array
 
-	songs_index = ERB.new(File.open('lib/views/songs_index.erb').read)
+	index = ERB.new(File.open('lib/views/index.erb').read)
 	@songs = Song.all
 
-	File.open('_site/songs_index.html', 'w+') do |f|
-	  f << songs_index.result(binding)
+	File.open('_site/index.html', 'w+') do |f|
+	  f << index.result(binding)
 	end
 
 	song_show = ERB.new(File.open('lib/views/song_show.erb').read)
