@@ -17,11 +17,12 @@ class Artist
   end
 
   def genres=(genre)
+    genre.artists << self
     @genres << genre
   end
 
   def songs
-    @songs.flatten
+    @songs
   end
 
   def self.reset_artists
@@ -32,19 +33,23 @@ class Artist
     @@artists
   end
 
-  def self.sort
-    @@artists.sort_by do |artist|
-      artist.name
-    end
-    # names = []
-    # self.all.each do |artist|
-    #   names << artist.name
-    # end
-    # names.sort
-  end
+  # def self.sort
+  #   @@artists.sort_by do |artist|
+  #     artist.name
+  #   end
+  #   # names = []
+  #   # self.all.each do |artist|
+  #   #   names << artist.name
+  #   # end
+  #   # names.sort
+  # end
 
   def self.count
     @@artists.length
+  end
+
+  def self.find_or_create_by_name(string)
+    @@all.detect{|a| a.name == string} || Artist.new.tap{|a| a.name = string}
   end
 
 
