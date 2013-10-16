@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<h1>Welcome to Team Saga's Jukebox!</h1>
+ <p>Please enjoy browsing our artists.</p>
+ <h2>Artists</h2>
+ <ul>
+  <% @artists.each do |artist| %>
+   <li><a href="artists/<%= artist.url %>.html" title=""><%= artist.name %></a></li>
+   <% end %>
+ </ul>
+</body>
+</html>
