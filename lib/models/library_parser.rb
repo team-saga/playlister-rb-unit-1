@@ -1,3 +1,4 @@
+require_relative '../../config/environment.rb'
 class LibraryParser
 
   def make_objects(artist_name, song_name, genre_name)
@@ -16,9 +17,9 @@ class LibraryParser
     end
   end
 
-
 end
 
 # x = LibraryParser.new
-# binding.pry
 
+# x.get_and_split_array
+# binding.pry

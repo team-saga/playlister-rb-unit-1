@@ -1,46 +1,40 @@
 class Genre
+  
+  attr_accessor :name, :songs
+  @@all = []
 
-	attr_accessor :name, :songs, :artists
+  def initialize
+    @songs = []
+    @@all << self
+  end
 
-	@@genres = []
+  def add_song(val)
+    @songs << val
+    # song.genre = self
+  end
 
-	def initialize
-		@songs = []
-		@artists = []
-		@@genres << self
-	end
+  def self.count
+   @@all.size
+  end
 
-	def songs=(song)
-		@songs << song
-	end
+   def self.all
+    @@all
+  end
 
-	def artists=(artist)
-		artist.genres << self
-		@artists << artist
-	end
+  def self.reset_all
+     @@all = []
+  end
 
-	def artists
-		@artists.flatten.uniq
-	end
+  def artists
+    @songs.collect{|s| s.artist}
+  end
 
-	def self.reset_genres
-		@@genres = []
-	end
+   def self.find_or_create_by_name(string)
+    find_by_name(string) || Genre.new.tap{|g| g.name = string}
+  end
 
-	def self.all
-		@@genres
-	end
-
-	def self.count
-		@@genres.length
-	end
-
-	def songs
-		@songs.flatten
-	end
-
-  def self.find_or_create_by_name(string)
-    @@all.detect{|g| g.name == string} || Genre.new.tap{|g| g.name = string}
+    def self.find_by_name(string)
+    @@all.detect{|a| a.name == string}
   end
 
 end
