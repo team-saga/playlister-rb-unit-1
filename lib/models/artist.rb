@@ -36,4 +36,8 @@ class Artist
     @@all.detect{|a| a.name == string}
   end
 
+  def url
+    name.downcase.gsub(' ','-')
+  end
+
 end

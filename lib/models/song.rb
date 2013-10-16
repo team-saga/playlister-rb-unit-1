@@ -34,4 +34,8 @@ class Song
     @@all.detect{|a| a.name == string}
   end
 
+  def url
+    self.name.downcase.gsub(' ','-')
+  end
+
 end

@@ -6,17 +6,17 @@
 <body>
 <h1>Welcome to Team Saga's Jukebox!</h1>
  <p>Please enjoy browsing our songs.</p>
- <h2>Artists</h2>
+ <h2>Songs</h2>
  <ul>
-  <% @artists.each do |artist| %>
-   <li><a href="artist/<%= artist.url%>.html" title=""><%= artist.name %></a></li>
+  <% @songs.each do |song| %>
+   <li><a href="songs/<%= song.url %>.html" title=""><%= song.name %></a></li>
    <% end %>
  </ul>
-  <h2>Genres</h2>
+<!--   <h2>Genres</h2>
  <ul>
-  <% @genres.each do |genre| %>
-   <li><a href="genre/<%= genre.url%>.html" title=""><%= genre.name %></a></li>
-   <% end %>
- </ul>
+  <%# @genres.each do |genre| %>
+   <li><a href="genre/<%# genre.url%>.html" title=""><%# genre.name %></a></li>
+   <%# end %>
+ </ul> -->
 </body>
 </html>

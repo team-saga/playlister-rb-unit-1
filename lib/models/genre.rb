@@ -29,12 +29,16 @@ class Genre
     @songs.collect{|s| s.artist}
   end
 
-   def self.find_or_create_by_name(string)
+  def self.find_or_create_by_name(string)
     find_by_name(string) || Genre.new.tap{|g| g.name = string}
   end
 
-    def self.find_by_name(string)
+  def self.find_by_name(string)
     @@all.detect{|a| a.name == string}
+  end
+
+  def url
+    name.downcase.gsub(' ','-')
   end
 
 end

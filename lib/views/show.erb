@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Artist Name</title>
+  <title><%= @song.name %></title>
 </head>
 <body>
-<h1>Artist Name</h1>
-<h2>Songs by this artist</h2>
+<h1><%= @song.name %></h1>
 <ul>
-  <li>Song name - Genre</li>
+   <li>Artist: <a href="artists/<%= @song.artist.url%>.html" title=""><%= @song.artist.name %></a></li>
+  <li>Genre: <a href="genres/<%= @song.genre.url%>.html" title=""><%= @song.genre.name %></a></li>
 </ul>
-
 </body>
 </html>
