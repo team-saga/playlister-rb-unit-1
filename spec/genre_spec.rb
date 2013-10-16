@@ -58,4 +58,12 @@ describe "Genre" do
 		genre.artists = [Artist.new, Artist.new, Artist.new]
 		genre.artists.length.should eq(3)
 	end
+
+	it "only knows about its own artists" do
+  	genre = Genre.new.tap { |genre| genre.name = "rap" }
+  	no_genre_artist = Artist.new
+  	genre_artist = Artist.new
+  	genre_artist.add_song(Song.new.tap { |song| song.genre = genre })
+  	genre.artists.count.should eq(1)
+	end
 end
