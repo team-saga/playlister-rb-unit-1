@@ -1,23 +1,17 @@
 require_relative '../config/environment'
 
 class CLI
-  attr_accessor :songs, :genres, :artists
-
-  APPROVED_COMMANDS = [:list, :help, :exit]
-
-  def initialize(songs)
-    @songs = songs
+  attr_accessor :songs
+  def initialize
+    @songs = Song.all
     @on = true
+    call
   end
 
   def call
-    while self.on?
+    while @on == true
       self.help
     end
-  end
-
-  def on?
-    @on
   end
 
   def help
@@ -25,50 +19,46 @@ class CLI
     self.command_request
   end
 
-  def exit
-    puts "Goodbye!"
-    @on = false
-  end
-
   def command(input)
-    if APPROVED_COMMANDS.include?(input.strip.downcase.to_sym)
-      self.send(input)
-    elsif input.start_with?("play")
-      song_request =
-      self.play(song_request)
-    else
-      puts "Sorry, I don't know what you mean. Please try again."
-    end
+    case input
+      when "list"
+        list
+      when "exit"
+        exit
+      when "play"
+        play
+      end
   end
 
   def list
-
-    #list all artists and theirs songs and genres:
-    # M83 - 8 Songs
-    # 1. Midnight City - Folk 
-    # 2. Kim & Jesse  - Pop
-    # Lady Gaga - 6 Songs
-    # 3. Pokerface
-    # 4. Some other Lady Gaga Song
-    # entering the number plays the song
-
-
-# Do this later
-    #list genres 
-    # Folk: 8 Songs, 3 Artists
-    #  M83 - Midnight City
-    #  Lady Gaga - Poker Face
-
-    #List songs:
-    # (1) Songs A-Z
-     # >> 
-     # 1. First Song
-     # 2. Second Song
-
+    i = 1
+    puts "\n"
+    Artist.all.each do |artist|
+      artist.songs.each do |song|
+        puts "#{i}. #{artist.name} - #{song.name} - #{song.genre.name}"
+        i += 1
+      end
+    end
+    puts "\n"
   end
 
   def play
-    # "play" by showing the song name with "Now playign #{song.name}"
+   puts "Please enter a song name or number. \n"
+   input = gets.downcase.strip
+   result = 0
+      if input.to_i > 0
+        i = input.to_i
+        puts "\nNow playing #{Song.all[i].name} by #{Song.all[i].artist.name}.\n\n"
+      elsif input.to_i == 0
+          Song.all.each do |x|
+           if x.name.downcase == input
+            result = x
+          end
+        end
+        puts "\nNow playing #{result.name} by #{result.artist.name}.\n\n"
+      else
+        puts "Invalid Input"
+    end
   end
 
   def command_request
@@ -77,5 +67,7 @@ class CLI
 
 end
 
-# jukebox = CLI.new(@songs)
-# jukebox.call
+x = LibraryParser.new
+x.get_and_split_array
+CLI.new
+
