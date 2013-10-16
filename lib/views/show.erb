@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @artist.name %></title>
+</head>
+<body>
+<h1><%= @artist.name %></h1>
+<table>
+  <caption>Songs</caption>
+  <thead>
+    <tr>
+      <th>Songs</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @songs.artist.each do |song| %>
+    <tr>
+      <td><%= @song.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</body>
+</html>
