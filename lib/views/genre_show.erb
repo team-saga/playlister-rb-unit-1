@@ -4,6 +4,7 @@
   <title><%= @genre.name %></title>
 </head>
 <body>
+<p><a href="../index.html" title=""><< All Songs</a></p>
 <h1><%= @genre.name %> - <%= @genre.songs.count %> Song(s), <%= @genre.artists.count %> Artist(s)</h1>
 <ol>
 	<% @genre.songs.each do |song| %>

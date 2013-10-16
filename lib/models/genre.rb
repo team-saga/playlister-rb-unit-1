@@ -41,4 +41,8 @@ class Genre
     name.downcase.gsub(' ','-')
   end
 
+  # def sort_by_songs
+  #   @songs.count.sort.reverse
+  # end
+
 end

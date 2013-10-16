@@ -28,7 +28,7 @@ class SiteGenerator
 	artists_index = ERB.new(File.open('lib/views/artists_index.erb').read)
 	@artists = Artist.all
 
-	File.open('_site/artists_index.html', 'w+') do |f|
+	File.open('_site/artists.html', 'w+') do |f|
 	  f << artists_index.result(binding)
 	end
 
@@ -46,7 +46,7 @@ class SiteGenerator
 	genre_index = ERB.new(File.open('lib/views/genre_index.erb').read)
 	@genres = Genre.all
 
-	File.open('_site/genre_index.html', 'w+') do |f|
+	File.open('_site/genres.html', 'w+') do |f|
 	  f << genre_index.result(binding)
 	end
 

@@ -6,10 +6,14 @@
 <body>
 <h1>Welcome to Team Saga's Jukebox!</h1>
  <p>Please enjoy browsing the song genres.</p>
+  <ul>
+   <li><a href="artists.html" title="">All Artists</a></li>
+   <li><a href="index.html" title="">All Songs</a></li>
+ </ul>
  <h2>Genres</h2>
  <ul>
   <% @genres.each do |genre| %>
-   <li><a href="genres/<%= genre.url %>.html" title=""><%= genre.name %></a></li>
+   <li><a href="genres/<%= genre.url %>.html" title=""><%= genre.name %> (<%= genre.songs.count %>)</a></li>
    <% end %>
  </ul>
 </body>
