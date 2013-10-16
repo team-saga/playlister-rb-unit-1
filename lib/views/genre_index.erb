@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<h1>Welcome to Team Saga's Jukebox!</h1>
+ <p>Please enjoy browsing the song genres.</p>
+  <ul>
+   <li><a href="artists.html" title="">All Artists</a></li>
+   <li><a href="index.html" title="">All Songs</a></li>
+ </ul>
+ <h2>Genres (<%= @genres.count %>)</h2>
+ <ul>
+  <% Genre.sort_by_songs.each do |genre| %>
+   <li><a href="genres/<%= genre.url %>.html" title=""><%= genre.name %></a> - <%= genre.songs.count %> Song(s), <%= genre.artists.count %> Artist(s)</li>
+   <% end %>
+ </ul>
+</body>
+</html>

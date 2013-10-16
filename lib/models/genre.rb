@@ -41,4 +41,12 @@ class Genre
     name.downcase.gsub(' ','-')
   end
 
+ #sort on qty of songs in a genre
+  def self.sort_by_songs
+    sorted_genres = self.all.sort_by do |genre|
+      genre.songs.count 
+    end
+    sorted_genres.reverse
+  end
 end
+
