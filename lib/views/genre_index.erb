@@ -12,8 +12,8 @@
  </ul>
  <h2>Genres (<%= @genres.count %>)</h2>
  <ul>
-  <% @genres.each do |genre| %>
-   <li><a href="genres/<%= genre.url %>.html" title=""><%= genre.name %> (<%= genre.songs.count %>)</a></li>
+  <% Genre.sort_by_songs.each do |genre| %>
+   <li><a href="genres/<%= genre.url %>.html" title=""><%= genre.name %></a> - <%= genre.songs.count %> Song(s), <%= genre.artists.count %> Artist(s)</li>
    <% end %>
  </ul>
 </body>
