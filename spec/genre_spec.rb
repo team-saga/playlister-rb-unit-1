@@ -1,69 +1,82 @@
 require_relative './spec_helper'
 
 describe "Genre" do
-	it "can initialize a genre" do
-		Genre.new.should be_an_instance_of(Genre)
-	end
 
-	it "has a name" do
-		genre = Genre.new
-		genre.name = "hip-hop"
-		genre.name.should eq("hip-hop")
-	end
+  it "can initialize a genre" do
+    Genre.new.should be_an_instance_of(Genre)
+  end
 
-	it "has many songs" do
-		genre = Genre.new.tap{|genre| genre.name = "hip-hop"}
-		3.times do
-			genre.songs = Song.new
-		end
-		genre.songs.length.should eq(3)
-	end
+  it "has a name" do
+    genre = Genre.new
+    genre.name = 'rap'
+    genre.name.should eq('rap')
+  end
 
-	it "has many artists" do
-		genre = Genre.new
-		genre.name = "hip-hop"
-		2.times do
-			genre.artists = Artist.new
-		end
-		genre.artists.length.should eq(2)
-	end
+  it "has many songs" do
+    genre = Genre.new.tap { |g| g.name = 'rap' }
+    3.times do
+      song = Song.new
+      song.genre = genre
+    end
+    genre.songs.count.should eq(3)
+  end
 
-	it "keeps unique artists" do
-		genre = Genre.new
-		genre.artists = ["Adele", "Adele", "Kanye"]
-		genre.artists.should eq(["Adele", "Kanye"])
-	end
+  it "has many artists" do
+    genre = Genre.new
+    genre.name = 'rap'
 
-	it "keeps count genres" do
-		Genre.reset_genres
-		3.times do
-			genre = Genre.new
-		end
-		Genre.count.should eq(3)
-	end
+    2.times do
+      artist = Artist.new
+      song = Song.new.tap { |s| s.genre = genre }
+      artist.add_song(song)
+    end
 
-	it "can reset all genres created" do
-		Genre.reset_genres
-		Genre.count.should eq(0)
-	end
+    genre.artists.count.should eq(2)
+  end
 
-	it "can count all the songs that belong to a genre" do
-		genre = Genre.new
-		genre.songs = [Song.new, Song.new, Song.new]
-		genre.songs.length.should eq(3)
-	end
+  it "keeps unique artists" do
+    genre = Genre.new.tap{|g| g.name = 'rap'}
+    artist = Artist.new
 
-	it "can count all the artists that belong to a genre" do
-		genre = Genre.new
-		genre.artists = [Artist.new, Artist.new, Artist.new]
-		genre.artists.length.should eq(3)
-	end
+    [1,2].each do
+      song = Song.new
+      song.genre = genre
+      artist.add_song(song)
+    end
+    genre.artists.count.should eq(1)
+  end
 
-	it "only knows about its own artists" do
-  	genre = Genre.new.tap { |genre| genre.name = "rap" }
-  	no_genre_artist = Artist.new
-  	genre_artist = Artist.new
-  	genre_artist.add_song(Song.new.tap { |song| song.genre = genre })
-  	genre.artists.count.should eq(1)
-	end
+  describe "Class methods" do
+
+    before(:each) do
+      Genre.reset_genres
+    end
+
+    it "keeps track of all known genres" do
+      Genre.count.should eq(0)
+      rap = Genre.new.tap{|g| g.name = 'rap'}
+      electronica = Genre.new.tap{|g| g.name = 'electronica'}
+      Genre.count.should eq(2)
+      Genre.all.should include(rap)
+      Genre.genres.should include(electronica)
+    end
+
+    it "can reset genres" do
+      genres = (1..5).collect do |i|
+        Genre.new
+      end
+      Genre.count.should eq(5)
+      Genre.reset_genres
+      Genre.count.should eq(0)
+    end
+
+    it "only knows about its own artists" do
+      genre = Genre.new.tap { |g| g.name = "rap" }
+      no_genre_artist = Artist.new
+      genre_artist = Artist.new
+      genre_artist.add_song(Song.new.tap { |s| s.genre = genre })
+      genre.artists.count.should eq(1)
+    end
+
+  end
 end

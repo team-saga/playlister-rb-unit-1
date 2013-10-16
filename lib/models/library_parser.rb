@@ -1,3 +1,5 @@
+require_relative '../../config/environment'
+
 class LibraryParser
 
   def make_objects(artist_name, song_name, genre_name)
@@ -5,6 +7,7 @@ class LibraryParser
 
     song.artist = Artist.find_or_create_by_name(artist_name)
     song.genre = Genre.find_or_create_by_name(genre_name)
+
   end
 
   def get_and_split_array
@@ -19,6 +22,7 @@ class LibraryParser
 
 end
 
-# x = LibraryParser.new
-# binding.pry
+x = LibraryParser.new
+x.get_and_split_array
+binding.pry
 

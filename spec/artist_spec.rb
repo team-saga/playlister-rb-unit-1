@@ -2,46 +2,70 @@ require_relative './spec_helper'
 
 describe "Artist" do
 
-	let(:artist) {Artist.new}
-	let(:song) {Song.new}
+  it "can be initialized" do
+    Artist.new.should be_an_instance_of(Artist)
+  end
 
-	it "can be initialized" do
-		artist.should be_an_instance_of(Artist)
-	end
+  it "can have a name" do
+    artist = Artist.new
+    artist.name = "Adele"
+    artist.name.should eq("Adele")
+  end
 
-	it "can have a name" do
-		artist.name = "Jay-Z & Kanye West"
-		artist.name.should eq("Jay-Z & Kanye West")
-	end
+  describe "with songs" do
 
-	it "can have songs" do
-		artist.tap {|a| a.songs = Song.new; a.songs = Song.new }
-	end
+    let(:artist) { Artist.new }
+    let(:song) { Song.new }
 
-	it "can have genres through songs" do
-		song.genre = "hip-hop"
-		artist.songs = song
-		artist.songs[0].genre.should eq("hip-hop")
-	end
+    it "has songs" do
+      artist.songs = []
+      artist.songs.should eq([])
+    end
 
-	it "can keep track of artists created" do
-		Artist.reset_artists
-		#create a bunch of new artists
-		5.times do
-			Artist.new
-		end
+    it "can have a song added" do
+      artist.add_song(song)
+      artist.songs.should include(song)
+    end
 
-		Artist.all.length.should eq(5)
-	end
+    it "knows how many songs it has" do
+      artist.songs = [song, Song.new]
+      artist.songs.count.should eq(2)
+    end
 
-	it "can count how many songs an artist has" do
-		artist.songs = [song,Song.new,Song.new,Song.new]
-		artist.songs.count.should eq(4)
-	end
+  end
 
-	it "can reset the artists created" do
-    Artist.reset_artists
-    Artist.count.should eq(0)
-	end
+  describe "with genres" do
 
+    let(:artist) { Artist.new }
+
+    it "can have genres" do
+      song = Song.new
+      song.genre = Genre.new.tap { |genre| genre.name = "rap" }
+      artist.add_song song
+      artist.genres.should include(song.genre)
+    end
+
+  end
+
+  describe "Class methods" do
+
+    before(:each) do
+      Artist.reset_artists
+      @artist = Artist.new
+    end
+
+    it "keeps track of the artists that have been created" do
+      Artist.all.should include(@artist)
+    end
+
+    it "can count how many artists have been created" do
+      Artist.count.should eq(1)
+    end
+
+    it "can reset the artists that have been created" do
+      Artist.reset_artists
+      Artist.count.should eq(0)
+    end
+
+  end
 end
