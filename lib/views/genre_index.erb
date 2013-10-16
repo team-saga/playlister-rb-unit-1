@@ -5,11 +5,11 @@
 </head>
 <body>
 <h1>Welcome to Team Saga's Jukebox!</h1>
- <p>Please enjoy browsing our artists.</p>
- <h2>Artists</h2>
+ <p>Please enjoy browsing the song genres.</p>
+ <h2>Genres</h2>
  <ul>
-  <% @artists.each do |artist| %>
-   <li><a href="artists/<%= artist.url %>.html" title=""><%= artist.name %></a></li>
+  <% @genres.each do |genre| %>
+   <li><a href="genres/<%= genre.url %>.html" title=""><%= genre.name %></a></li>
    <% end %>
  </ul>
 </body>

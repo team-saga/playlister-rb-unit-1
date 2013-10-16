@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @artist.name %></title>
+  <title><%= @genre.name %></title>
 </head>
 <body>
-<h1><%= @artist.name %> - <%= @artist.songs.count %> Song(s)</h1>
+<h1><%= @genre.name %> - <%= @genre.songs.count %> Song(s), <%= @genre.artists.count %> Artist(s)</h1>
 <ol>
-	<% @artist.songs.each do |song| %>
-   <li><a href="songs/<%= song.url%>.html" title=""><%= song.name %></a> - <a href="genres/<%= song.genre.url%>.html" title=""><%= song.genre.name %></a></li>
+	<% @genre.songs.each do |song| %>
+   <li><a href="../songs/<%= song.url%>.html" title=""><%= song.name %></a> - <a href="../genres/<%= song.genre.url%>.html" title=""><%= song.genre.name %></a></li>
   <% end %>
 </ol>
 </body>
