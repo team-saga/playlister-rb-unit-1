@@ -1,11 +1,12 @@
-# require_relative '../../config/environment'
+require_relative '../config/environment'
 
 class CLI
   attr_accessor :songs, :genres, :artists
 
   APPROVED_COMMANDS = [:list, :help, :exit]
 
-  def initialize
+  def initialize(songs)
+    @songs = songs
     @on = true
   end
 
@@ -64,10 +65,6 @@ class CLI
      # 1. First Song
      # 2. Second Song
 
-
-    
-
-
   end
 
   def play
@@ -79,3 +76,6 @@ class CLI
   end
 
 end
+
+# jukebox = CLI.new(@songs)
+# jukebox.call
