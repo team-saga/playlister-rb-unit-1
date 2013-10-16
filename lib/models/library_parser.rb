@@ -19,7 +19,7 @@ class LibraryParser
 
 end
 
-# x = LibraryParser.new
+x = LibraryParser.new
 
-# x.get_and_split_array
-# binding.pry
+x.get_and_split_array
+binding.pry

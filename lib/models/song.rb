@@ -1,23 +1,16 @@
+require_relative 'class_trackable_module.rb'
+
 class Song
+
+  extend ClassTrackable
+
+
 
   attr_accessor :name, :artist, :genre
 
-  @@all = []
-
   def initialize
-    @@all << self
-  end
+    self.class.all << self
 
-  def self.all
-    @@all
-  end
-
-  def self.count
-   @@all.size
-  end
-
-  def self.reset_all
-     @@all = []
   end
 
   def genre=(genre)
@@ -25,13 +18,13 @@ class Song
     genre.add_song(self) 
   end
 
+   def add_song(val)
+    @songs << val
+  end
+
   def artist=(artist)
     @artist = artist
     artist.add_song(self) 
-  end
-
-  def self.find_by_name(string)
-    @@all.detect{|a| a.name == string}
   end
 
   def url
