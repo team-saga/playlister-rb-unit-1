@@ -1,4 +1,4 @@
-require_relative '../environment'
+require_relative './spec_helper'
 
 
 describe "LibraryParser" do

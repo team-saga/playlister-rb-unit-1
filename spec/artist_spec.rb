@@ -1,4 +1,5 @@
-require_relative '../environment'
+require_relative './spec_helper'
+
 describe "Artist" do
 
 	let(:artist) {Artist.new}
@@ -26,14 +27,14 @@ describe "Artist" do
 	it "can keep track of artists created" do
 		Artist.reset_artists
 		#create a bunch of new artists
-		5.times do 
+		5.times do
 			Artist.new
 		end
 
 		Artist.all.length.should eq(5)
 	end
 
-	it "can count how many songs an artist has" do 
+	it "can count how many songs an artist has" do
 		artist.songs = [song,Song.new,Song.new,Song.new]
 		artist.songs.count.should eq(4)
 	end

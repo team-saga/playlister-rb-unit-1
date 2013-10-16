@@ -1,4 +1,4 @@
-# require_relative '../../environment.rb'
+# require_relative '../../config/environment'
 
 class CLI
 	attr_accessor :songs, :genres, :artists
@@ -33,7 +33,7 @@ class CLI
     if APPROVED_COMMANDS.include?(input.strip.downcase.to_sym)
       self.send(input)
     elsif input.start_with?("play")
-    	song_request = 
+    	song_request =
     	self.play(song_request)
     else
       puts "Invalid command"
