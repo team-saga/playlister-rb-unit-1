@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @artist.name %></title>
+</head>
+<body>
+<h1><%= @artist.name %></h1>
+<ol>
+	<% @artist.songs.each do |song| %>
+   <li><a href="songs/<%= @artist.song.url%>.html" title=""><%= @song.name %></a> - <a href="genres/<%= @artist.genre.url%>.html" title=""><%= @artist.song.genre %></a></li>
+  <% end %>
+</ol>
+</body>
+</html>

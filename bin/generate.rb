@@ -1,29 +1,41 @@
 require_relative "../config/environment.rb"
 
-#generate
-x = LibraryParser.new
-x.get_and_split_array
+class SiteGenerator
+	
+	x = LibraryParser.new
+	x.get_and_split_array
 
-index = ERB.new(File.open('lib/views/index.erb').read)
-@songs = Song.all
-@genres = Genre.all
+	songs-index = ERB.new(File.open('lib/views/songs-index.erb').read)
+	@songs = Song.all
 
-File.open('_site/index.html', 'w+') do |f|
-  f << index.result(binding)
+	File.open('_site/songs-index.html', 'w+') do |f|
+	  f << songs-index.result(binding)
+	end
+
+	song-show = ERB.new(File.open('lib/views/song-show.erb').read)
+	# For each song, first, cast the song into instance var
+
+	@songs.each do |song|
+	   @song = song
+	  File.open("_site/songs/#{song.url}.html", 'w+') do |f|
+	    f << song-show.result
+	  end
+	end
+
+	artists-index = ERB.new(File.open('lib/views/artists-index.erb').read)
+	@artists = Artist.all
+
+	File.open('_site/artists-index.html', 'w+') do |f|
+	  f << artists-index.result(binding)
+	end
+
+	artist-show = ERB.new(File.open('lib/views/artist-show.erb').read)
+
+	@artists.each do |artist|
+	   @artist = artist
+	  File.open("_site/artists/#{artist.url}.html", 'w+') do |f|
+	    f << artist-show.result
+	  end
+	end	
+
 end
-
-show = ERB.new(File.open('lib/views/show.erb').read)
-# For each song, first, cast the song into instance var
-
-@songs.each do |song|
-   @song = song
-  File.open("_site/songs/#{song.url}.html", 'w+') do |f|
-    f << show.result
-  end
-end
-
-# dogs.each do |dog|
-#   File.open("_site/dogs/#{dog.url}.html", 'w+') do |f|
-#     f << show.result(binding)
-#   end
-# end
