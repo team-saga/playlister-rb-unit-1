@@ -1,9 +1,9 @@
-require_relative '../../environment.rb'
+require_relative '../../config/environment'
 
 class Artist
   attr_accessor :name, :songs, :genres
 
-  @@artists = [] 
+  @@artists = []
 
   def initialize
     @songs = []
@@ -29,12 +29,12 @@ class Artist
   end
 
   def self.all
-    @@artists     
+    @@artists
   end
 
   def self.sort
     @@artists.sort_by do |artist|
-      artist.name 
+      artist.name
     end
     # names = []
     # self.all.each do |artist|
