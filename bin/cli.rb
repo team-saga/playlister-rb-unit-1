@@ -64,10 +64,6 @@ class CLI
      # 1. First Song
      # 2. Second Song
 
-
-    
-
-
   end
 
   def play
