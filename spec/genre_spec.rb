@@ -25,7 +25,7 @@ describe "Genre" do
     genre = Genre.new
     genre.name = 'rap'
 
-    2.times do 
+    2.times do
       artist = Artist.new
       song = Song.new.tap { |s| s.genre = genre }
       artist.add_song(song)
@@ -68,6 +68,14 @@ describe "Genre" do
       Genre.count.should eq(5)
       Genre.reset_all
       Genre.count.should eq(0)
+    end
+
+    it "only knows about its own artists" do
+      genre = Genre.new.tap { |g| g.name = "rap" }
+      no_genre_artist = Artist.new
+      genre_artist = Artist.new
+      genre_artist.add_song(Song.new.tap { |s| s.genre = genre })
+      genre.artists.count.should eq(1)
     end
 
   end
