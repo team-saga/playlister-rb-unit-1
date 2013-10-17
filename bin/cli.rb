@@ -48,7 +48,7 @@ class CLI
    result = 0
       if input.to_i > 0
         i = input.to_i
-        puts "\nNow playing #{Song.all[i].name} by #{Song.all[i].artist.name}.\n\n"
+        puts "\nNow playing #{Song.all[i-1].name} by #{Song.all[i-1].artist.name}.\n\n"
       elsif input.to_i == 0
           Song.all.each do |x|
            if x.name.downcase == input
