@@ -25,7 +25,7 @@ class Artist
   end
 
   def genres
-    @songs.collect{|s| s.genre}
+    @songs.collect{|s| s.genre}.uniq
   end
 
   def self.find_or_create_by_name(string)
